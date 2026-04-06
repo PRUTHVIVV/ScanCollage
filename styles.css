@@ -1,0 +1,349 @@
+:root {
+  --bg: #f3f2fb;
+  --panel: #ffffff;
+  --panel-border: #d8d8e6;
+  --ink: #181926;
+  --muted: #666c80;
+  --primary: #6f4bf2;
+  --primary-strong: #5e3fe0;
+  --secondary: #eff1f5;
+  --secondary-strong: #dde1e9;
+  --selected: #ece8ff;
+  --shadow: 0 12px 28px rgba(50, 54, 74, 0.08);
+  --radius: 4px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  overflow: hidden;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: linear-gradient(180deg, #f7f6fd 0%, #edf0f7 100%);
+}
+
+.app-shell {
+  display: grid;
+  grid-template-columns: minmax(320px, 400px) minmax(0, 1fr);
+  gap: 12px;
+  height: 100vh;
+  padding: 12px;
+}
+
+.panel {
+  min-height: 0;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px;
+  overflow: auto;
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 12px;
+  padding: 12px;
+  overflow: hidden;
+}
+
+.panel-copy h1,
+.preview-header h2,
+.tile-editor-header h2,
+p {
+  margin-top: 0;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.72rem;
+  color: var(--primary);
+}
+
+h1 {
+  margin-bottom: 8px;
+  font-size: clamp(1.7rem, 2.8vw, 2.6rem);
+  line-height: 1;
+}
+
+.lede,
+.hint,
+.upload-subtitle,
+.selected-label,
+.preview-header p,
+.tile-editor-header p,
+.photo-shape {
+  color: var(--muted);
+}
+
+.upload-card,
+.preview-frame,
+.tile-editor,
+.empty-list,
+.empty-state,
+.photo-item {
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+}
+
+.upload-card,
+.preview-frame,
+.tile-editor {
+  background: var(--secondary);
+}
+
+.upload-card,
+.tile-editor {
+  padding: 12px;
+}
+
+.upload-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.upload-title,
+label span {
+  display: block;
+  font-weight: 700;
+}
+
+.upload-title,
+.upload-subtitle {
+  margin: 0;
+}
+
+.upload-actions,
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.photo-list {
+  margin-top: 12px;
+  display: grid;
+  gap: 8px;
+  max-height: 220px;
+  overflow: auto;
+}
+
+.photo-item,
+.empty-list {
+  margin: 0;
+  padding: 10px;
+  background: #ffffff;
+}
+
+.photo-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.photo-item.selected {
+  background: var(--selected);
+  border-color: rgba(111, 75, 242, 0.3);
+}
+
+.photo-item.waiting {
+  opacity: 0.82;
+}
+
+.photo-meta {
+  min-width: 0;
+}
+
+.photo-name {
+  display: block;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.photo-status {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 2px 6px;
+  border-radius: var(--radius);
+  background: var(--secondary);
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.remove-photo {
+  width: auto;
+  margin-top: 0;
+  padding: 8px 10px;
+  flex-shrink: 0;
+}
+
+.settings-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+label input,
+label select,
+button {
+  width: 100%;
+  margin-top: 6px;
+  border-radius: var(--radius);
+  border: 1px solid var(--panel-border);
+  font: inherit;
+}
+
+label input,
+label select {
+  padding: 10px 12px;
+  background: #ffffff;
+}
+
+input[type="range"] {
+  padding: 0;
+}
+
+button {
+  padding: 10px 14px;
+  font-weight: 700;
+  color: #ffffff;
+  background: var(--primary);
+  cursor: pointer;
+}
+
+button.secondary {
+  color: var(--ink);
+  background: #ffffff;
+}
+
+.actions {
+  position: sticky;
+  bottom: 0;
+  padding-top: 4px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0), #ffffff 28%);
+}
+
+.preview-frame {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+  padding: 12px;
+}
+
+.preview-header p,
+.tile-editor-header p {
+  margin-bottom: 0;
+}
+
+.canvas-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  background: #fbfbfe;
+}
+
+canvas {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: min(78vh, calc(100vh - 120px));
+  background: #f8f5ef;
+  cursor: default;
+}
+
+.tile-editor {
+  min-height: 0;
+  overflow: auto;
+}
+
+.editor-controls {
+  display: grid;
+  gap: 12px;
+}
+
+.empty-state {
+  padding: 12px;
+  color: var(--muted);
+}
+
+.hidden {
+  display: none;
+}
+
+button:hover,
+button:focus-visible {
+  background: var(--primary-strong);
+}
+
+button.secondary:hover,
+button.secondary:focus-visible {
+  background: var(--secondary-strong);
+}
+
+input:focus-visible,
+select:focus-visible,
+button:focus-visible {
+  outline: 2px solid rgba(111, 75, 242, 0.28);
+  outline-offset: 1px;
+}
+
+@media (max-width: 1100px) {
+  body {
+    overflow: auto;
+  }
+
+  .app-shell {
+    height: auto;
+    min-height: 100vh;
+    grid-template-columns: 1fr;
+  }
+
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .canvas-stage {
+    min-height: 420px;
+  }
+}
+
+@media (max-width: 720px) {
+  .settings-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .upload-header,
+  .upload-actions,
+  .actions {
+    flex-direction: column;
+  }
+}

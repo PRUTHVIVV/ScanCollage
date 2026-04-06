@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ScanCollage</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <main class="app-shell">
+    <section class="panel controls">
+      <div class="panel-copy">
+        <p class="eyebrow">ScanCollage</p>
+        <h1>Fast monochrome collage builder</h1>
+        <p class="lede">
+          Add photos one by one, keep the collage vertical by default, and drag directly on the preview to move or
+          resize each image inside its tile.
+        </p>
+      </div>
+
+      <div class="upload-card">
+        <div class="upload-header">
+          <div>
+            <p class="upload-title">Photo selection</p>
+            <p class="upload-subtitle">Click an added image to select it. Click the same image again to unselect it.</p>
+          </div>
+          <div class="upload-actions">
+            <button id="add-photo" type="button">Add photo</button>
+            <button id="clear-photos" type="button" class="secondary">Clear all</button>
+          </div>
+        </div>
+
+        <input id="photo-input" type="file" accept="image/*" hidden>
+
+        <div id="photo-list" class="photo-list">
+          <p class="empty-list">No photos added yet.</p>
+        </div>
+      </div>
+
+      <div class="settings-grid">
+        <label>
+          <span>Canvas format</span>
+          <select id="canvas-format">
+            <option value="portrait">Portrait</option>
+            <option value="landscape">Landscape</option>
+            <option value="custom">Custom</option>
+          </select>
+        </label>
+        <label>
+          <span>Grid flow</span>
+          <select id="grid-flow">
+            <option value="vertical">Vertical</option>
+            <option value="horizontal">Horizontal</option>
+          </select>
+        </label>
+        <label>
+          <span>Grids</span>
+          <input id="grid-count" type="number" min="1" max="12" step="1" value="1">
+        </label>
+        <label>
+          <span>Filter</span>
+          <select id="filter-mode">
+            <option value="greyscale">Greyscale</option>
+            <option value="soft-grey">Soft Greyscale</option>
+            <option value="contrast-grey">High Contrast Grey</option>
+            <option value="bw">B/W</option>
+            <option value="ink-bw">Ink B/W</option>
+          </select>
+        </label>
+        <label>
+          <span>Canvas width</span>
+          <input id="canvas-width" type="number" min="600" max="6000" step="100" value="1600">
+        </label>
+        <label>
+          <span>Canvas height</span>
+          <input id="canvas-height" type="number" min="600" max="6000" step="100" value="2400">
+        </label>
+      </div>
+
+      <div class="actions">
+        <label>
+          <span>File name</span>
+          <input id="file-name" type="text" placeholder="Enter file name" />
+        </label>
+        <button id="auto-layout" type="button">Reset layout</button>
+        <button id="download" type="button" class="secondary">Download JPG</button>
+      </div>
+
+      <p class="hint">
+        Drag inside a selected tile to reposition the image. Drag the plus handle in the tile corner to resize width and
+        height.
+      </p>
+    </section>
+
+    <section class="panel workspace">
+      <div class="preview-frame">
+        <div class="preview-header">
+          <h2>Preview</h2>
+          <p>Portrait photos are placed first, and the visible grids stay borderless.</p>
+        </div>
+        <div class="canvas-stage">
+          <canvas id="collage-canvas" width="1600" height="2400" aria-label="Collage preview"></canvas>
+        </div>
+      </div>
+
+      <aside class="tile-editor">
+        <div class="tile-editor-header">
+          <h2>Tile controls</h2>
+          <p>Selection from the list and selection from the canvas stay in sync.</p>
+        </div>
+
+        <div id="empty-state" class="empty-state">
+          Add photos, then select a tile or image to adjust it.
+        </div>
+
+        <div id="editor-controls" class="editor-controls hidden">
+          <p id="selected-label" class="selected-label"></p>
+
+          <label>
+            <span>Width</span>
+            <input id="width-range" type="range" min="0.4" max="4" step="0.01" value="1.2">
+          </label>
+
+          <label>
+            <span>Height</span>
+            <input id="height-range" type="range" min="0.4" max="4" step="0.01" value="1.2">
+          </label>
+
+          <label>
+            <span>Horizontal position</span>
+            <input id="x-range" type="range" min="-1" max="1" step="0.01" value="0">
+          </label>
+
+          <label>
+            <span>Vertical position</span>
+            <input id="y-range" type="range" min="-1" max="1" step="0.01" value="0">
+          </label>
+
+          <label>
+            <span>Fit mode</span>
+            <select id="fit-mode">
+              <option value="cover">Cover tile</option>
+              <option value="contain">Contain in tile</option>
+            </select>
+          </label>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
